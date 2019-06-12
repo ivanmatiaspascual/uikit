@@ -5248,8 +5248,14 @@
                     if (this.offsetTop) {
 
                         var ref = offset(this.$el);
-                        var top = ref.top;
-                        minHeight += top < height(window) / 2 ? (" - " + top + "px") : '';
+                        var top = ref.top; // could be 0, <0 or >0
+                        if (top < height(window) / 2) {
+                            if (top < 0) {
+                                minHeight += top.toString().replace('-', ' - ') + 'px';
+                            } else {
+                                minHeight += ' - ' + top + 'px';
+                            }
+                        }
 
                     }
 

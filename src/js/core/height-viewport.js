@@ -37,8 +37,14 @@ export default {
 
                 if (this.offsetTop) {
 
-                    const {top} = offset(this.$el);
-                    minHeight += top < height(window) / 2 ? ` - ${top}px` : '';
+                    let {top} = offset(this.$el); // could be 0, <0 or >0
+                    if (top < height(window) / 2) {
+                        if (top < 0) {
+                            minHeight += top.toString().replace('-', ' - ') + 'px';
+                        } else {
+                            minHeight += ' - ' + top + 'px';
+                        }
+                    }
 
                 }
 
