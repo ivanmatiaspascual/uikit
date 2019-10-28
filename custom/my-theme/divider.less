@@ -1,0 +1,25 @@
+
+/* fill-available (no tiene implementada la parte inverse)
+ ========================================================================== */
+
+/*
+ * Reset child height, caused by `inline-block`
+ */
+
+.uk-divider-fill-available { line-height: 0; }
+
+.uk-divider-fill-available::after {
+    content: "";
+    display: inline-block;
+    width: -webkit-fill-available;
+    max-width: 100%;
+    border-top: @divider-small-border-width solid @divider-small-border;
+    vertical-align: top;
+    .hook-divider-fill-available;
+}
+
+// Hooks
+// ========================================================================
+
+.hook-divider-fill-available() {}
+
